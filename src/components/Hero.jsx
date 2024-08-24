@@ -70,7 +70,7 @@ const Hero = () => {
       backgroundColor: "transparent",
     })
       .then((dataUrl) => {
-        download(dataUrl, `${songTitle + " lyric-card"}.png`);
+        download(dataUrl, `${songTitle + " -" + artist + " lyric-card"}.png`);
       })
       .catch((err) => {
         console.error("Error generating image:", err);
