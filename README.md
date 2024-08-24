@@ -22,7 +22,7 @@ You need to create an account in [here](https://developer.spotify.com/) to get t
    ```bash
    npm run dev
    ```
-## Try it out: [https://lyricizeonthespot.onrender.com)
+## Try it out: [Lyricize on the Spot!](https://lyricizeonthespot.onrender.com)
 
 ![screenshot](https://github.com/N4M154/Lyricize-on-the-Spot/blob/3f2ee68ac03c7b0ad50a1ed8cbf033a5f4271e03/public/ss.png)
 ![screenshot](https://github.com/N4M154/Lyricize-on-the-Spot/blob/3f2ee68ac03c7b0ad50a1ed8cbf033a5f4271e03/public/Routines%20In%20The%20Night%20-Twenty%20One%20Pilots%20lyric-card.png)
