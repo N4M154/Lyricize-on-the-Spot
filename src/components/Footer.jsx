@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="flex flex-wrap items-center mt-3 text-sm font-medium text-green-500 sm:mt-0 mr-5">
         <li className="mr-4 flex item-center">
           <a
-            href="https://github.com/N4M154/LyricizeOnTheSpot"
+            href="https://github.com/N4M154/Lyricize-on-the-Spot"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center hover:underline"
