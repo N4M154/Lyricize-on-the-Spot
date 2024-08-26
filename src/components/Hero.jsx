@@ -10,10 +10,10 @@ const SPOTIFY_CLIENT_ID = import.meta.env.VITE_CLIENT_ID; //from spotify develop
 const SPOTIFY_CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
 
 const Hero = () => {
-  const [songLink, setSongLink] = useState("");
   const [songTitle, setSongTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [albumArt, setAlbumArt] = useState("");
+  const [songLink, setSongLink] = useState("");
   const [lyrics, setLyrics] = useState([]);
   const [cardBgColor1, setCardBgColor1] = useState("#000000");
   const [cardBgColor2, setCardBgColor2] = useState("#4B17AB");
@@ -23,8 +23,11 @@ const Hero = () => {
   const cardRef = useRef(null);
 
   const fetchSpotifyData = async () => {
-    const extractedTrackId = songLink.split("/").pop().split("?")[0];
-    setTrackId(extractedTrackId);
+    if (!songLink && (!songTitle || !artist)) {
+      alert("Please enter a Spotify link or both song title and artist name.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -42,19 +45,54 @@ const Hero = () => {
 
       const token = tokenResponse.data.access_token;
 
-      const trackResponse = await axios.get(
-        `https://api.spotify.com/v1/tracks/${extractedTrackId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      if (songLink) {
+        const trackIdFromLink = songLink.split("/track/")[1]?.split("?")[0];
+        if (!trackIdFromLink) {
+          alert(
+            "Invalid Spotify link. Please enter a valid Spotify track link."
+          );
+          setLoading(false);
+          return;
         }
-      );
 
-      const track = trackResponse.data;
-      setSongTitle(track.name);
-      setArtist(track.artists.map((artist) => artist.name).join(", "));
-      setAlbumArt(track.album.images[0].url);
+        const trackResponse = await axios.get(
+          `https://api.spotify.com/v1/tracks/${trackIdFromLink}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const track = trackResponse.data;
+
+        setSongTitle(track.name);
+        setArtist(track.artists.map((artist) => artist.name).join(", "));
+        setAlbumArt(track.album.images[0].url);
+        setTrackId(track.id);
+      } else {
+        const searchResponse = await axios.get(
+          `https://api.spotify.com/v1/search?q=track:${encodeURIComponent(
+            songTitle
+          )}%20artist:${encodeURIComponent(artist)}&type=track&limit=1`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const track = searchResponse.data.tracks.items[0];
+
+        if (track) {
+          setSongTitle(track.name);
+          setArtist(track.artists.map((artist) => artist.name).join(", "));
+          setAlbumArt(track.album.images[0].url);
+          setTrackId(track.id);
+        } else {
+          alert("No matching track found on Spotify.");
+        }
+      }
     } catch (error) {
       console.error("Error fetching Spotify data:", error);
     } finally {
@@ -70,7 +108,7 @@ const Hero = () => {
       backgroundColor: "transparent",
     })
       .then((dataUrl) => {
-        download(dataUrl, `${songTitle + " - " + artist + " lyric-card"}.png`);
+        download(dataUrl, `${songTitle + " - " + artist}.png`);
       })
       .catch((err) => {
         console.error("Error generating image:", err);
@@ -78,10 +116,10 @@ const Hero = () => {
   };
 
   const handleRefresh = () => {
-    setSongLink("");
     setSongTitle("");
     setArtist("");
     setAlbumArt("");
+    setSongLink("");
     setLyrics([]);
     setTrackId("");
   };
@@ -93,9 +131,26 @@ const Hero = () => {
           <div className="flex items-center space-x-4">
             <input
               type="text"
-              placeholder="Enter Spotify song link"
+              placeholder="Enter Spotify Song Link"
               value={songLink}
               onChange={(e) => setSongLink(e.target.value)}
+              className="p-3 rounded-lg shadow-md bg-green-900 text-white w-full border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300"
+            />
+          </div>
+          <p className="text-center text-lg text-black font-bold">OR</p>
+          <div className="flex items-center space-x-4 mt-4">
+            <input
+              type="text"
+              placeholder="Enter Song Title"
+              value={songTitle}
+              onChange={(e) => setSongTitle(e.target.value)}
+              className="p-3 rounded-lg shadow-md bg-green-900 text-white w-full border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300"
+            />
+            <input
+              type="text"
+              placeholder="Enter Artist Name"
+              value={artist}
+              onChange={(e) => setArtist(e.target.value)}
               className="p-3 rounded-lg shadow-md bg-green-900 text-white w-full border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300"
             />
             <button
@@ -116,7 +171,7 @@ const Hero = () => {
               placeholder="Enter lyrics here, each line on a new row..."
               value={lyrics.join("\n")}
               onChange={(e) => setLyrics(e.target.value.split("\n"))}
-              className="p-3 rounded-md border border-green-600 bg-green-900  text-white w-full h-40 focus:outline-none focus:ring-2 focus:ring-green-300"
+              className="p-3 rounded-md border border-green-600 bg-green-900 text-white w-full h-40 focus:outline-none focus:ring-2 focus:ring-green-300"
             />
           </div>
           <div>
@@ -192,10 +247,10 @@ const Hero = () => {
               ></iframe>
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full">
-              <p className="text-green-700 font-semibold">
-                Enter a song link and fetch details to see the player here.
-              </p>
+            <div className="text-center p-5">
+              <h2 className="mt-40 font-semibold text-green-600">
+                Enter the credentials and fetch details to see the player here.
+              </h2>
             </div>
           )}
         </div>
