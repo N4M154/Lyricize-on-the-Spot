@@ -106,6 +106,7 @@ const Hero = () => {
     }
     toPng(cardRef.current, {
       backgroundColor: "transparent",
+      pixelRatio: 2,
     })
       .then((dataUrl) => {
         download(dataUrl, `${songTitle + " - " + artist}.png`);
