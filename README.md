@@ -1,5 +1,5 @@
 # Lyricize on the Spot!
-As an avid user of Spotify, I like to collect the lyric cards of the songs I listen to. Even though the mobile app has a feature to create this card, the Desktop version does not. So I made this to create my lyric cards as I'm mostly on my PC and it's bothersome to go to my phone just to get it!😉
+As an avid user of Spotify, I like to collect the lyric cards of the songs I listen to. Even though the mobile app has a feature to create this card, the Desktop version does not. So I made this to create my lyric cards as I'm mostly on my PC and it's bothersome to go to my phone just to get it!(You can use this one in your mobile too,don't need to go to spotify...cool,huh?)😉
  
 # Spotify Developer mode
 You need to create an account in [here](https://developer.spotify.com/) to get the goods...If you want to change the code that is!
