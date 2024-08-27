@@ -127,9 +127,9 @@ const Hero = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-500 to-black text-white p-5">
-      <div className="flex flex-col lg:flex-row w-full max-w-5xl space-y-8 lg:space-y-0 lg:space-x-8">
+      <div className="flex w-full max-w-5xl space-x-8">
         <div className="flex-1 space-y-6">
-          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <div className="flex items-center space-x-4">
             <input
               type="text"
               placeholder="Enter Spotify Song Link"
@@ -139,7 +139,7 @@ const Hero = () => {
             />
           </div>
           <p className="text-center text-lg text-black font-bold">OR</p>
-          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
+          <div className="flex items-center space-x-4 mt-4">
             <input
               type="text"
               placeholder="Enter Song Title"
@@ -183,7 +183,7 @@ const Hero = () => {
                 color: textColor,
                 maxWidth: "370px",
               }}
-              className="p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 mx-auto"
+              className="p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105"
             >
               <LyricCard
                 songTitle={songTitle}
@@ -196,16 +196,17 @@ const Hero = () => {
           <div className="flex justify-center">
             <button
               onClick={downloadCard}
-              className="mt-4 p-4 rounded-lg shadow-md bg-violet-800 text-white font-semibold hover:bg-violet-400 hover:text-violet-800 transition duration-300 w-full sm:w-auto"
+              className="mt-4 p-4 rounded-lg shadow-md bg-violet-800 text-white font-semibold hover:bg-violet-400 hover:text-violet-800 transition duration-300"
             >
               Download png
             </button>
           </div>
         </div>
+        {/* Color stuff */}
 
         <div className="flex-1 flex flex-col space-y-6 p-4 rounded-3xl shadow-lg bg-gradient-to-b from-green-700 to-black shadow-green-700">
           <div className="space-y-4">
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="flex space-x-4">
               <div className="flex-1">
                 <h3 className="text-lg mb-2 text-black font-semibold">
                   1st Gradient Color:
