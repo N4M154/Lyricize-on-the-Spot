@@ -181,7 +181,7 @@ const Hero = () => {
               style={{
                 background: `linear-gradient(to bottom, ${cardBgColor1}, ${cardBgColor2})`,
                 color: textColor,
-                maxWidth: "370px",
+                maxWidth: "350px",
               }}
               className="p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105"
             >
