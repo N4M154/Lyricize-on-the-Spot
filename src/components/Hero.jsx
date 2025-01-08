@@ -105,7 +105,7 @@ const Hero = () => {
       return;
     }
     toPng(cardRef.current, {
-      // backgroundColor: "transparent",
+      backgroundColor: "transparent",
       pixelRatio: 2,
     })
       .then((dataUrl) => {
@@ -182,8 +182,6 @@ const Hero = () => {
                 background: `linear-gradient(to bottom, ${cardBgColor1}, ${cardBgColor2})`,
                 color: textColor,
                 maxWidth: "350px",
-                borderRadius: "0.5rem", // Ensure rounded corners are consistent
-                overflow: "hidden", // Prevent any overflow that might introduce transparency
               }}
               className="p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105"
             >
