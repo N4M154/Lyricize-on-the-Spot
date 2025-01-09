@@ -16,8 +16,8 @@ const Hero = () => {
   const [songLink, setSongLink] = useState("");
   const [lyrics, setLyrics] = useState([]);
   const [cardBgColor1, setCardBgColor1] = useState("#000000");
-  const [cardBgColor2, setCardBgColor2] = useState("#4B17AB");
-  const [textColor, setTextColor] = useState("#FFFA75");
+  const [cardBgColor2, setCardBgColor2] = useState("#290c5e");
+  const [textColor, setTextColor] = useState("#ffffff");
   const [trackId, setTrackId] = useState("");
   const [loading, setLoading] = useState(false);
   const cardRef = useRef(null);
