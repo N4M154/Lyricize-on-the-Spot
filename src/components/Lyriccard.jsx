@@ -3,7 +3,7 @@ import { BsSpotify } from "react-icons/bs";
 
 const LyricCard = ({ songTitle, artist, albumArt, lyrics }) => {
   return (
-    <div className="p-6 rounded-lg shadow-[0_10px_30px_rgba(128,128,128,1)]">
+    <div className="p-6 rounded-lg shadow-[0_10px_30px_rgba(0,0,50)]">
       <div className="flex items-center space-x-4">
         <img
           className="w-12 h-12 rounded-lg"
