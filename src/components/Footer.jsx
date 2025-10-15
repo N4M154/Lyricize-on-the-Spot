@@ -2,11 +2,11 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-black flex items-center justify-between py-6 shadow-[0_10px_40px_rgba(46,204,113,1)]">
-      <span className="text-sm text-green-500 sm:text-center font-semibold ml-5">
-        @{new Date().getFullYear()} Lyricize on the Spot! All Rights Reserved.
+    <footer className="bg-black backdrop-blur border-t border-white/10 flex items-center justify-between py-6 font-spotify">
+      <span className="text-sm text-white/70 sm:text-center font-semibold ml-5">
+        ©{new Date().getFullYear()} Lyricize on the Spot!
       </span>
-      <div className="flex flex-wrap items-center mt-3 text-sm font-medium text-green-500 sm:mt-0 mr-5">
+      <div className="flex flex-wrap items-center mt-3 text-sm font-medium text-white/70 sm:mt-0 mr-5">
         <li className="mr-4 flex item-center">
           <a
             href="https://github.com/N4M154/Lyricize-on-the-Spot"
@@ -28,11 +28,11 @@ export default function Footer() {
             </svg>
             GitHub
           </a>
-          <div className="border-r pr-4 mr-4 "></div>
+          <div className="border-r border-white/10 pr-4 mr-4 "></div>
         </li>
         <div className="mr-4 flex items-center">
           <div className="pr-4 mr-4">
-            <p className="font-semibold">Contact Me:</p>
+            <p className="font-semibold">Contact:</p>
           </div>
           <div className="flex items-center">
             <a

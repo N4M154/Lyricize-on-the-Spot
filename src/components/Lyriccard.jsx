@@ -3,7 +3,7 @@ import { BsSpotify } from "react-icons/bs";
 
 const LyricCard = ({ songTitle, artist, albumArt, lyrics }) => {
   return (
-    <div className="p-6 rounded-lg shadow-[0_10px_30px_rgba(0,0,50)]">
+    <div className="p-6 rounded-lg shadow-[0_5px_30px_rgba(0,0,0,0.5)] font-spotify">
       <div className="flex items-center space-x-4">
         <img
           className="w-12 h-12 rounded-lg"
@@ -11,17 +11,15 @@ const LyricCard = ({ songTitle, artist, albumArt, lyrics }) => {
           alt="Album cover"
         />
         <div>
-          <p className="font-semibold text-md">{songTitle}</p>
-          <p className="text-xs">{artist}</p>
+          <p className="font-bold text-base md:text-md tracking-tight">{songTitle}</p>
+          <p className="text-[11px] uppercase opacity-80 tracking-wide">{artist}</p>
         </div>
       </div>
-      <div className="mt-10 max-h-60 overflow-auto space-y-3">
+      <div className="mt-10 max-h-60 overflow-auto">
         {lyrics.length > 0 ? (
-          lyrics.map((line, index) => (
-            <p key={index} className="font-medium break-words text-[17px]">
-              {line}
-            </p>
-          ))
+          <div className="font-semibold break-words text-xl md:text-lg leading-snug tracking-tight whitespace-pre-wrap">
+            {lyrics.join("\n")}
+          </div>
         ) : (
           <p className="text-center text-gray-400">No lyrics available</p>
         )}

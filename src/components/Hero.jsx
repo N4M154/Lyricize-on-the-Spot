@@ -5,6 +5,7 @@ import { toPng } from "html-to-image";
 import ColorPicker from "./ColorPicker";
 import LyricCard from "./Lyriccard";
 import { HiRefresh } from "react-icons/hi";
+import { ArrowBigDownDash } from "lucide-react";
 
 const SPOTIFY_CLIENT_ID = import.meta.env.VITE_CLIENT_ID; //from spotify developer mode
 const SPOTIFY_CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
@@ -126,9 +127,9 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-500 to-black text-white p-5">
-      <div className="flex w-full max-w-5xl space-x-8">
-        <div className="flex-1 space-y-6">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-b from-green-600 via-zinc-900 to-black text-white p-5 font-spotify">
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="space-y-6">
           <div className="flex items-center space-x-4">
             <input
               type="text"
@@ -198,44 +199,40 @@ const Hero = () => {
               onClick={downloadCard}
               className="mt-4 p-4 rounded-lg shadow-md bg-violet-800 text-white font-semibold hover:bg-violet-400 hover:text-violet-800 transition duration-300"
             >
-              Download png
+              <div className="flex items-center space-x-2">
+                <ArrowBigDownDash className="w-6 h-6" />
+              </div>
             </button>
           </div>
         </div>
-        {/* Color stuff */}
-
-        <div className="flex-1 flex flex-col space-y-6 p-4 rounded-3xl shadow-lg bg-gradient-to-b from-green-700 to-black shadow-green-700">
-          <div className="space-y-4">
-            <div className="flex space-x-4">
-              <div className="flex-1">
-                <h3 className="text-lg mb-2 text-black font-semibold">
-                  1st Gradient Color:
-                </h3>
-                <ColorPicker color={cardBgColor1} onChange={setCardBgColor1} />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg mb-2 text-black font-semibold">
-                  2nd Gradient Color:
-                </h3>
-                <ColorPicker color={cardBgColor2} onChange={setCardBgColor2} />
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg mb-2 text-black font-semibold">
-                Text Color:
-              </h3>
-              <ColorPicker color={textColor} onChange={setTextColor} />
-            </div>
+        {/* Controls + Player */}
+        <div className="flex flex-col space-y-6 p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <ColorPicker
+              label="Gradient 1"
+              color={cardBgColor1}
+              onChange={setCardBgColor1}
+            />
+            <ColorPicker
+              label="Gradient 2"
+              color={cardBgColor2}
+              onChange={setCardBgColor2}
+            />
+            <ColorPicker
+              label="Text"
+              color={textColor}
+              onChange={setTextColor}
+            />
           </div>
 
           {loading ? (
-            <div className="flex items-center justify-center h-full">
-              <p className="text-green-700 font-semibold">
+            <div className="flex items-center justify-center h-[300px] rounded-lg border border-white/10">
+              <p className="text-green-400 font-semibold">
                 Loading music player...
               </p>
             </div>
           ) : trackId ? (
-            <div className="mt-4">
+            <div className="mt-2">
               <iframe
                 src={`https://open.spotify.com/embed/track/${trackId}`}
                 width="100%"
@@ -243,13 +240,13 @@ const Hero = () => {
                 frameBorder="0"
                 allow="encrypted-media"
                 title="Spotify Player"
-                className="rounded-lg shadow-md transform transition duration-300 hover:scale-105"
+                className="rounded-lg shadow-md"
               ></iframe>
             </div>
           ) : (
-            <div className="text-center p-5">
-              <h2 className="mt-40 font-semibold text-green-600">
-                Enter the credentials and fetch details to see the player here.
+            <div className="text-center p-8 rounded-lg border border-white/10">
+              <h2 className="font-semibold text-white/80">
+                Choose a track to preview the Spotify player here.
               </h2>
             </div>
           )}
